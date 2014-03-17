@@ -14,7 +14,9 @@ var path = require('path');
 var fs = require('fs');
 
 checker.init(args, function(json) {
-    if (args.json) {
+    if (args.json === true) {
+        console.log(JSON.stringify(json, null, 2));
+    } else if (args.json) {
         var dir = path.dirname(args.json);
         mkdirp.sync(dir);
         fs.writeFileSync(args.json, JSON.stringify(json, null, 4) + '\n', 'utf8');
